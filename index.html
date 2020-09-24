@@ -1,0 +1,274 @@
+<!--
+    index.html
+	Final Project
+	
+	Revision History
+		Tyler Mills, April 19, 2020: Created
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta charset="UTF-8">
+    <title>Chat App</title>
+    <!--jQuery-->
+    <script src="js/lib/jquery-2.1.4.js"></script>
+    <!--jQuery mobile-->
+    <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+    <!--jQuery mobile style-->
+    <link href="css/lib/jquery.mobile-1.4.5.css" rel="stylesheet">
+    <!--jQuery Validation-->
+    <script src="js/lib/jquery.validate.js"></script>
+    <!--Custom js-->
+    <script src="js/database.js"></script>
+    <script src="js/facade.js"></script>
+    <script src="js/feedbackDAL.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/util.js"></script>
+    <!--Custom style-->
+    <link rel="stylesheet" href="css/lib/DarkOrange.css" />
+    <link rel="stylesheet" href="css/lib/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="css/lib/jquery.mobile.structure-1.4.5.css" />
+    <link href="css/customstyle.css" rel="stylesheet">
+</head>
+<body data-theme="a">
+<div data-role="page" id="ChatPage">
+    <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="players-panel">
+        <h2 style="margin-top: 0; width: 100%; text-align: center;">Users</h2>
+        <ul data-role="listview" id="playerList">
+
+        </ul>
+    </div>
+    <div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="chat-nav-panel">
+        <ul data-role="listview">
+            <li data-icon="false"><a href="#EditUserPage" class="btnEditUser"></a></li>
+            <li></li>
+            <li data-icon="comment"><a href="#ChatPage">Chat</a></li>
+            <li data-icon="info"><a href="#AboutPage">About</a></li>
+            <li data-icon="gear"><a href="#SettingsPage">Settings</a></li>
+            <li></li>
+            <li data-icon="action" class="li-logout"><a class="logoutButton" style="color:red;">Log Out</a></li>
+            <li data-icon="false" class="li-login"><a class="loginButton" href="#LoginPage">Login</a></li>
+            <li data-icon="false" class="li-register"><a class="registerButton" href="#AddUserPage">Register</a></li>
+        </ul>
+    </div>
+    <header data-position="fixed" data-role="header" data-theme="b">
+        <div data-iconpos="top" data-role="navbar">
+            <ul>
+                <li>
+                    <a href="#chat-nav-panel">
+                        <img src="img/white-bars.png" style="width: 5vh; height: 5vh;">
+                    </a>
+                </li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li>
+                    <a href="#players-panel">
+                        <img src="img/white-person.png" style="width: 5vh; height: 5vh;">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <section data-role="content">
+        <ul id="messageList">
+
+        </ul>
+    </section>
+    <footer data-position="fixed" data-role="footer" data-theme="b">
+        <form method="post" id="formAddMessage">
+            <div class="ui-grid-a">
+                <div class="ui-block-a" style="width: 80%;">
+                    <input type="text" name="txtAddMessage" id="txtAddMessage">
+                </div>
+                <div class="ui-block-b" style="width: auto;">
+                    <button type="submit" id="submitAddMessage">
+                        <img src="img/comment-icon.png" style="width: 32px; height: auto;">
+                    </button>
+                </div>
+            </div>
+        </form>
+    </footer>
+</div>
+<div data-role="page" id="AboutPage">
+    <div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="about-nav-panel">
+    <ul data-role="listview">
+        <li data-icon="false"><a href="#EditUserPage" class="btnEditUser"></a></li>
+        <li></li>
+        <li data-icon="comment"><a href="#ChatPage">Chat</a></li>
+        <li data-icon="info"><a href="#AboutPage">About</a></li>
+        <li data-icon="gear"><a href="#SettingsPage">Settings</a></li>
+        <li></li>
+        <li data-icon="action" class="li-logout"><a class="logoutButton" style="color:red;">Log Out</a></li>
+        <li data-icon="false" class="li-login"><a class="loginButton" href="#LoginPage">Login</a></li>
+        <li data-icon="false" class="li-register"><a class="registerButton" href="#AddUserPage">Register</a></li>
+    </ul>
+</div>
+    <header data-position="fixed" data-role="header" data-theme="b">
+        <div data-iconpos="top" data-role="navbar">
+            <ul>
+                <li>
+                    <a href="#about-nav-panel">
+                        <img src="img/white-bars.png" style="width: 5vh; height: 5vh;">
+                    </a>
+                </li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </header>
+    <section data-role="content">
+        <h1>Tyler Mills Chat App</h1>
+        <p>
+            This is a mobile chatting application I developed for the Mobile 1 Final Project. It features the ability to create your own user profile and allows anyone to chat on it.
+        </p>
+        <p>
+            Please feel free to contact me if you have any suggestions!
+        </p>
+        <a data-icon="phone" data-role="button" href="tel:1234567890">Call: 123.456.7890</a>
+        <a data-icon="mail" data-role="button" href="mailto:tmills9208@conestogac.on.ca">tmills9208@conestogac.on.ca</a>
+    </section>
+    <footer data-position="fixed" data-role="footer" data-theme="b">
+        <h1>&copy; 2020 Tyler Mills</h1>
+    </footer>
+</div>
+<div data-role="page" id="AddUserPage">
+    <div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="register-nav-panel">
+        <ul data-role="listview">
+            <li data-icon="false"><a href="#EditUserPage" class="btnEditUser"></a></li>
+            <li></li>
+            <li data-icon="comment"><a href="#ChatPage">Chat</a></li>
+            <li data-icon="info"><a href="#AboutPage">About</a></li>
+            <li data-icon="gear"><a href="#SettingsPage">Settings</a></li>
+            <li></li>
+            <li data-icon="action" class="li-logout"><a class="logoutButton" style="color:red;">Log Out</a></li>
+            <li data-icon="false" class="li-login"><a class="loginButton" href="#LoginPage">Login</a></li>
+            <li data-icon="false" class="li-register"><a class="registerButton" href="#AddUserPage">Register</a></li>
+        </ul>
+    </div>
+    <header data-position="fixed" data-role="header" data-theme="b">
+        <div data-iconpos="top" data-role="navbar">
+            <ul>
+                <li>
+                    <a href="#register-nav-panel">
+                        <img src="img/white-bars.png" style="width: 5vh; height: 5vh;">
+                    </a>
+                </li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </header>
+    <section data-role="content">
+        <h1 style="width: 100%; text-align: center;">Register</h1>
+        <form method="post" id="AddUserForm">
+            <label for="AddUserUsername">Username:</label>
+            <input type="text" name="AddUserUsername" id="AddUserUsername">
+            <label for="AddUserEmail">Email:</label>
+            <input type="text" name="AddUserEmail" id="AddUserEmail">
+            <label for="AddUserPassword">Password:</label>
+            <input type="text" name="AddUserPassword" id="AddUserPassword">
+            <button id="AddUserSubmit" name="AddUserSubmit" data-inline="true" class="ui-btn-active">Register</button>
+        </form>
+    </section>
+    <footer data-position="fixed" data-role="footer" data-theme="b">
+        <h1>&copy; 2020 Tyler Mills</h1>
+    </footer>
+</div>
+<div data-role="page" id="LoginPage">
+    <div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="login-nav-panel">
+        <ul data-role="listview">
+            <li data-icon="false"><a href="#EditUserPage" class="btnEditUser"></a></li>
+            <li></li>
+            <li data-icon="comment"><a href="#ChatPage">Chat</a></li>
+            <li data-icon="info"><a href="#AboutPage">About</a></li>
+            <li data-icon="gear"><a href="#SettingsPage">Settings</a></li>
+            <li></li>
+            <li data-icon="action" class="li-logout"><a class="logoutButton" style="color:red;">Log Out</a></li>
+            <li data-icon="false" class="li-login"><a class="loginButton" href="#LoginPage">Login</a></li>
+            <li data-icon="false" class="li-register"><a class="registerButton" href="#AddUserPage">Register</a></li>
+        </ul>
+    </div>
+    <header data-position="fixed" data-role="header" data-theme="b">
+        <div data-iconpos="top" data-role="navbar">
+            <ul>
+                <li>
+                    <a href="#login-nav-panel">
+                        <img src="img/white-bars.png" style="width: 5vh; height: 5vh;">
+                    </a>
+                </li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </header>
+    <section data-role="content">
+        <h1 style="width: 100%; text-align: center;">Login</h1>
+        <form method="post" id="LoginForm">
+            <label for="LoginUsername">Username:</label>
+            <input type="text" name="LoginUsername" id="LoginUsername">
+            <label for="LoginPassword">Password:</label>
+            <input type="text" name="LoginPassword" id="LoginPassword">
+            <button id="LoginSubmit" name="LoginSubmit" data-inline="true" class="ui-btn-active">Login</button>
+        </form>
+    </section>
+    <footer data-position="fixed" data-role="footer" data-theme="b">
+        <h1>&copy; 2020 Tyler Mills</h1>
+    </footer>
+</div>
+<div data-role="page" id="EditUserPage">
+    <div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="edit-nav-panel">
+        <ul data-role="listview">
+            <li data-icon="false"><a href="#EditUserPage" class="btnEditUser"></a></li>
+            <li></li>
+            <li data-icon="comment"><a href="#ChatPage">Chat</a></li>
+            <li data-icon="info"><a href="#AboutPage">About</a></li>
+            <li data-icon="gear"><a href="#SettingsPage">Settings</a></li>
+            <li></li>
+            <li data-icon="action" class="li-logout"><a class="logoutButton" style="color:red;">Log Out</a></li>
+            <li data-icon="false" class="li-login"><a class="loginButton" href="#LoginPage">Login</a></li>
+            <li data-icon="false" class="li-register"><a class="registerButton" href="#AddUserPage">Register</a></li>
+        </ul>
+    </div>
+    <header data-position="fixed" data-role="header" data-theme="b">
+        <div data-iconpos="top" data-role="navbar">
+            <ul>
+                <li>
+                    <a href="#edit-nav-panel">
+                        <img src="img/white-bars.png" style="width: 5vh; height: 5vh;">
+                    </a>
+                </li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </header>
+    <section data-role="content">
+        <h1 style="width: 100%; text-align: center;">User Settings</h1>
+        <form method="post" id="EditUserForm">
+            <label for="EditUserUsername">Username:</label>
+            <input type="text" name="EditUserUsername" id="EditUserUsername">
+            <label for="EditUserEmail">Email:</label>
+            <input type="text" name="EditUserEmail" id="EditUserEmail">
+            <label for="EditUserPassword">Password:</label>
+            <input type="text" name="EditUserPassword" id="EditUserPassword">
+            <button id="EditUserUpdate" name="EditUserUpdate" data-inline="true" class="ui-btn-active">Update</button>
+            <button id="EditUserDelete" name="EditUserDelete" data-inline="true" class="ui-btn-active">Delete Account</button>
+        </form>
+    </section>
+    <footer data-position="fixed" data-role="footer" data-theme="b">
+        <h1>&copy; 2020 Tyler Mills</h1>
+    </footer>
+</div>
+</body>
+</html>
